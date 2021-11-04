@@ -35,6 +35,8 @@ export interface ICategory extends ISanityEntity {
     title: string;
     slug: ISlug;
     description: string;
+    postCount: number;
+    image: IMedia;
 }
 
 export interface IPost extends ISanityEntity {

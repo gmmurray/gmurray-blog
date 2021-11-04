@@ -1,0 +1,95 @@
+import {
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Chip,
+    Grid,
+    Stack,
+    Typography,
+} from '@mui/material';
+
+import { Box } from '@mui/system';
+import { CardComponentProps } from '../lib/types';
+import { FC } from 'react';
+import { IPost } from '../lib/sanityTypes';
+import Link from 'next/link';
+import NextSanityImage from './NextSanityImage';
+import { getPostHref } from '../lib/routeHelpers';
+import { urlForImage } from '../lib/sanity';
+
+type PostCardProps = {
+    post: IPost;
+    imageHeight: number;
+} & CardComponentProps;
+
+const PostCard: FC<PostCardProps> = ({
+    cardHeight,
+    contentHeight,
+    actionsHeight,
+    elevation,
+    imageHeight,
+    post,
+}) => {
+    return (
+        <Card elevation={elevation} sx={{ minHeight: cardHeight }}>
+            <Link href={getPostHref(post)} passHref>
+                <CardActionArea>
+                    <CardMedia
+                        sx={{
+                            backgroundImage: `url(${urlForImage(
+                                post.mainImage,
+                            )})`,
+                            minHeight: imageHeight,
+                        }}
+                    >
+                        <Grid
+                            container
+                            direction="row"
+                            justifyContent="flex-start"
+                            alignItems="flex-end"
+                            minHeight={imageHeight}
+                            padding={2}
+                        >
+                            <Grid item>
+                                <Typography variant="h4" color="white">
+                                    {post.title}
+                                </Typography>
+                                <Typography
+                                    variant="subtitle1"
+                                    color="white"
+                                    fontStyle="italic"
+                                >
+                                    {formatDistanceToNow(
+                                        new Date(post.publishedAt),
+                                        { addSuffix: true },
+                                    )}
+                                </Typography>
+                                <Typography variant="subtitle1" color="white">
+                                    in {post.category.title}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </CardMedia>
+                    <CardContent
+                        sx={{ minHeight: contentHeight - imageHeight }}
+                    >
+                        <Typography variant="body1">{post.summary}</Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Link>
+            <CardActions sx={{ minHeight: actionsHeight }}>
+                {post.tags.length > 0 && (
+                    <Stack direction="row" spacing={1}>
+                        {post.tags.map(t => (
+                            <Chip key={t.value} label={t.label} />
+                        ))}
+                    </Stack>
+                )}
+            </CardActions>
+        </Card>
+    );
+};
+
+export default PostCard;

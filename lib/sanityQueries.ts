@@ -24,7 +24,8 @@ export const indexQuery = `
         category->
     },
     "categories": *[_type == 'category' && defined(slug.current)] | order(title asc, _updatedat desc) {
-        ...
+        ...,
+        "postCount": count(*[_type == 'post' && category->slug.current == ^.slug.current])
     }
 }`;
 
@@ -36,7 +37,8 @@ export const categoryQuery = `
 
 export const categoriesQuery = `
 *[_type == 'category' && defined(slug.current)] {
-    ...
+    ...,
+    "postCount": count(*[_type == 'post' && category->slug.current == ^.slug.current])
 }
 `;
 
