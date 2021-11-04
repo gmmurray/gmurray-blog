@@ -8,10 +8,10 @@ import {
     POST_PIXEL_HEIGHT,
 } from '../lib/constants';
 
-import AuthorCard from '../components/AuthorCard';
+import AuthorCard from '../components/cards/AuthorCard';
 import { GetStaticProps } from 'next';
-import IntroductionCard from '../components/IntroductionCard';
-import PostCard from '../components/PostCard';
+import IntroductionCard from '../components/cards/IntroductionCard';
+import PostCard from '../components/cards/PostCard';
 import { indexQuery } from '../lib/sanityQueries';
 import { sanityClient } from '../lib/config';
 

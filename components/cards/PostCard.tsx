@@ -10,13 +10,13 @@ import {
     Typography,
 } from '@mui/material';
 
-import { CardComponentProps } from '../lib/types';
+import { CardComponentProps } from '../../lib/types';
 import { FC } from 'react';
-import { IPost } from '../lib/sanityTypes';
+import { IPost } from '../../lib/sanityTypes';
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
-import { getPostHref } from '../lib/routeHelpers';
-import { urlForImage } from '../lib/sanity';
+import { getPostHref } from '../../lib/routeHelpers';
+import { urlForImage } from '../../lib/sanity';
 
 type PostCardProps = {
     post: IPost;

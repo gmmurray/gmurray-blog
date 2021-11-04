@@ -13,12 +13,12 @@ import {
 } from '@mui/material';
 import React, { FC } from 'react';
 
-import { CardComponentProps } from '../lib/types';
-import { ICategory } from '../lib/sanityTypes';
+import { CardComponentProps } from '../../lib/types';
+import { ICategory } from '../../lib/sanityTypes';
 import Link from 'next/link';
-import { getCategoryHref } from '../lib/routeHelpers';
-import { introText } from '../lib/staticContent';
-import { urlForImage } from '../lib/sanity';
+import { getCategoryHref } from '../../lib/routeHelpers';
+import { introText } from '../../lib/staticContent';
+import { urlForImage } from '../../lib/sanity';
 import { useTheme } from '@mui/system';
 
 const CATEGORIES_PER_LIST = 3;

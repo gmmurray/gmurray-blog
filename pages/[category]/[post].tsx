@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { GetStaticProps } from 'next';
 import { IPost } from '../../lib/sanityTypes';
 import Link from 'next/link';
-import PortableText from '../../components/PortableText';
+import PortableText from '../../components/shared/PortableText';
 import { getCategoryHref } from '../../lib/routeHelpers';
 import { sanityClient } from '../../lib/config';
 

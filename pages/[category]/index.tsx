@@ -10,7 +10,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { categoriesQuery, categoryQuery } from '../../lib/sanityQueries';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import CategoryCard from '../../components/CategoryCard';
+import CategoryCard from '../../components/cards/CategoryCard';
 import { ICategory } from '../../lib/sanityTypes';
 import Link from 'next/link';
 import { getPostHref } from '../../lib/routeHelpers';

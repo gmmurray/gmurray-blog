@@ -5,10 +5,10 @@ import {
     CardMedia,
     Typography,
 } from '@mui/material';
-import { introAuthoImgSrc, introAuthorText } from '../lib/staticContent';
+import { introAuthoImgSrc, introAuthorText } from '../../lib/staticContent';
 
 import { Box } from '@mui/system';
-import { CardComponentProps } from '../lib/types';
+import { CardComponentProps } from '../../lib/types';
 import { FC } from 'react';
 import Link from 'next/link';
 

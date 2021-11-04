@@ -12,11 +12,11 @@ import {
 } from '@mui/material';
 import { ChangeEvent, FC, useCallback, useState } from 'react';
 
-import { CardComponentProps } from '../lib/types';
+import { CardComponentProps } from '../../lib/types';
 import ClearIcon from '@mui/icons-material/Clear';
-import { ICategory } from '../lib/sanityTypes';
+import { ICategory } from '../../lib/sanityTypes';
 import SearchIcon from '@mui/icons-material/Search';
-import { urlForImage } from '../lib/sanity';
+import { urlForImage } from '../../lib/sanity';
 
 type CategoryCardProps = {
     category: ICategory;
