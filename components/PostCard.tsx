@@ -10,12 +10,11 @@ import {
     Typography,
 } from '@mui/material';
 
-import { Box } from '@mui/system';
 import { CardComponentProps } from '../lib/types';
 import { FC } from 'react';
 import { IPost } from '../lib/sanityTypes';
 import Link from 'next/link';
-import NextSanityImage from './NextSanityImage';
+import { formatDistanceToNow } from 'date-fns';
 import { getPostHref } from '../lib/routeHelpers';
 import { urlForImage } from '../lib/sanity';
 
