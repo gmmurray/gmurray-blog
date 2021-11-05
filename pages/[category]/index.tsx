@@ -3,6 +3,7 @@ import {
     DEFAULT_POST_PAGE_SIZE,
     POST_ACTIONS_HEIGHT,
     POST_CONTENT_HEIGHT,
+    POST_IMAGE_HEIGHT,
     POST_PIXEL_HEIGHT,
 } from '../../lib/constants';
 import { FC, Fragment, useCallback, useState } from 'react';
@@ -11,6 +12,7 @@ import { categoriesQuery, categoryQuery } from '../../lib/sanityQueries';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CategoryCard from '../../components/cards/CategoryCard';
+import CategoryPostCards from '../../components/cards/CategoryPostCards';
 import { ICategory } from '../../lib/sanityTypes';
 import Link from 'next/link';
 import { getPostHref } from '../../lib/routeHelpers';
@@ -24,6 +26,7 @@ const cardProps = {
     actionsHeight: POST_ACTIONS_HEIGHT,
     elevation: 3,
 };
+const cardImageHeight = POST_IMAGE_HEIGHT;
 
 type CategoryProps = {
     category: ICategory;
@@ -52,7 +55,7 @@ const Category: FC<CategoryProps> = ({ category }) => {
     const handleNextPage = useCallback(() => setPage(page + 1), [page]);
     const handlePrevPage = useCallback(() => setPage(page - 1), [page]);
 
-    const canClickNext = data && data.total > page * pageSize;
+    const canClickNext = !!data && data.total > page * pageSize;
     const canClickPrev = page !== 1;
 
     const renderContent = () => {
@@ -79,7 +82,7 @@ const Category: FC<CategoryProps> = ({ category }) => {
                     <ArrowBackIcon />
                 </IconButton>
             </Link>
-            <Container sx={{ mt: 9 }}>
+            <Container sx={{ mt: 9, mb: 3 }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <CategoryCard
@@ -89,23 +92,18 @@ const Category: FC<CategoryProps> = ({ category }) => {
                             {...cardProps}
                         />
                     </Grid>
+                    <CategoryPostCards
+                        isLoading={isLoading}
+                        data={data}
+                        onNextPage={handleNextPage}
+                        canClickNext={canClickNext}
+                        onPrevPage={handlePrevPage}
+                        canClickPrev={canClickPrev}
+                        cardImageHeight={cardImageHeight}
+                        {...cardProps}
+                    />
                 </Grid>
             </Container>
-            <div>
-                <div>{renderContent()}</div>
-                <div>
-                    <button disabled={!canClickPrev} onClick={handlePrevPage}>
-                        prev
-                    </button>
-                    <button
-                        disabled={!canClickNext}
-                        onClick={handleNextPage}
-                        style={{ marginLeft: '1rem' }}
-                    >
-                        next
-                    </button>
-                </div>
-            </div>
         </Fragment>
     );
 };

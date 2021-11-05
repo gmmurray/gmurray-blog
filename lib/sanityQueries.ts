@@ -19,7 +19,7 @@ description
 
 export const indexQuery = `
 {
-    "posts": *[_type == 'post'][0...5] | order(date desc, _updatedAt desc) {
+    "posts": *[_type == 'post'][0...5] | order(date desc, publishedAt desc) {
         ...,
         category->
     },
@@ -58,7 +58,7 @@ export const postsQuery = `
 
 export const categoryPostsQuery = `
 {
-    "data": *[_type == 'post' && category->slug.current == $slug && title match $search][$start...$end] | order(_updatedAt desc) {
+    "data": *[_type == 'post' && category->slug.current == $slug && title match $search][$start...$end] | order(publishedAt desc) {
         ...,
         category->
     },

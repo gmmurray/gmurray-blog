@@ -3,7 +3,7 @@ import { categoryPostsQuery } from './sanityQueries';
 import { sanityClient } from '../lib/config';
 import { useQuery } from 'react-query';
 
-type CategoryPostResponse = {
+export type CategoryPostResponse = {
     data: IPost[];
     total: number;
 };

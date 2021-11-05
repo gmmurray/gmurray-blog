@@ -79,7 +79,7 @@ const PostCard: FC<PostCardProps> = ({
                 </CardActionArea>
             </Link>
             <CardActions sx={{ minHeight: actionsHeight }}>
-                {post.tags.length > 0 && (
+                {(post.tags ?? []).length > 0 && (
                     <Stack direction="row" spacing={1}>
                         {post.tags.map(t => (
                             <Chip key={t.value} label={t.label} />

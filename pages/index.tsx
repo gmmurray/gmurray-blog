@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, Grow } from '@mui/material';
 import { FC, Fragment } from 'react';
 import { ICategory, IPost } from '../lib/sanityTypes';
 import {
@@ -6,6 +6,7 @@ import {
     POST_CONTENT_HEIGHT,
     POST_IMAGE_HEIGHT,
     POST_PIXEL_HEIGHT,
+    POST_TRANSITION_DURATION,
 } from '../lib/constants';
 
 import AuthorCard from '../components/cards/AuthorCard';
@@ -40,14 +41,16 @@ const Index: FC<IndexProps> = ({ posts, categories }) => {
                     <IntroductionCard {...cardProps} categories={categories} />
                 </Grid>
                 {posts.map(p => (
-                    <Grid key={p._id} item xs={12}>
-                        <PostCard
-                            key={p._id}
-                            post={p}
-                            imageHeight={cardImageHeight}
-                            {...cardProps}
-                        />
-                    </Grid>
+                    <Grow key={p._id} in timeout={POST_TRANSITION_DURATION}>
+                        <Grid key={p._id} item xs={12}>
+                            <PostCard
+                                key={p._id}
+                                post={p}
+                                imageHeight={cardImageHeight}
+                                {...cardProps}
+                            />
+                        </Grid>
+                    </Grow>
                 ))}
             </Grid>
         </Container>

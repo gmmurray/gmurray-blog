@@ -94,18 +94,14 @@ const CategoryCard: FC<CategoryCardProps> = ({
                         value={searchInput}
                         fullWidth
                         InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
+                            endAdornment: (
+                                <InputAdornment position="end">
                                     <IconButton
-                                        edge="start"
+                                        edge="end"
                                         onClick={handleSubmit}
                                     >
                                         <SearchIcon />
                                     </IconButton>
-                                </InputAdornment>
-                            ),
-                            endAdornment: (
-                                <InputAdornment position="end">
                                     <IconButton
                                         edge="end"
                                         onClick={handleReset}
