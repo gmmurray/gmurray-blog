@@ -1,11 +1,19 @@
+import {
+    Button,
+    Container,
+    Grid,
+    useMediaQuery,
+    useTheme,
+} from '@mui/material';
+import { FC, Fragment } from 'react';
 import { postQuery, postsQuery } from '../../lib/sanityQueries';
 
-import { FC } from 'react';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Box } from '@mui/system';
 import { GetStaticProps } from 'next';
 import { IPost } from '../../lib/sanityTypes';
 import Link from 'next/link';
-import PortableText from '../../components/shared/PortableText';
-import { getCategoryHref } from '../../lib/routeHelpers';
+import PostPageCard from '../../components/cards/PostPageCard';
 import { sanityClient } from '../../lib/config';
 
 type PostProps = {
@@ -13,32 +21,33 @@ type PostProps = {
 };
 
 const Post: FC<PostProps> = ({ post }) => {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     return (
-        <div>
-            <div>
-                <Link href={getCategoryHref(post.category)}>
-                    back to category
-                </Link>
-            </div>
-            <div>
-                <h2>{post.title}</h2>
-                <ul>
-                    <li>{post.category.title}</li>
-                    <li>
-                        tags
-                        <ul>
-                            {(post.tags ?? []).map(tag => (
-                                <li key={tag.value}>{tag.label}</li>
-                            ))}
-                        </ul>
-                    </li>
-                    <li>{post.publishedAt}</li>
-                </ul>
-            </div>
-            <div>
-                <PortableText blocks={post.body} />
-            </div>
-        </div>
+        <Fragment>
+            <Link href={`/${post.category.slug.current}`} passHref>
+                <Button
+                    variant="text"
+                    startIcon={<ArrowBackIcon />}
+                    sx={{
+                        position: 'absolute',
+                        top: 20,
+                        left: isSmallScreen ? 15 : 23,
+                        paddingLeft: 0,
+                    }}
+                    color="inherit"
+                >
+                    Back to category
+                </Button>
+            </Link>
+            <Container sx={{ mt: 9, mb: 3 }}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <PostPageCard post={post} />
+                    </Grid>
+                </Grid>
+            </Container>
+        </Fragment>
     );
 };
 

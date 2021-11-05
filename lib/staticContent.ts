@@ -6,3 +6,7 @@ of technology.
 export const introAuthorText = 'Greg Murray';
 export const introAuthoImgSrc =
     'https://gregmurray.org/static/99a43881af925e4d65ca13dfbaf7fe3a/25252/professional_for_web.jpg.jpg';
+
+export const postPageStaticContent = {
+    author: 'Greg Murray',
+};

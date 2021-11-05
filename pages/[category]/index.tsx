@@ -1,4 +1,10 @@
-import { Container, Grid, IconButton } from '@mui/material';
+import {
+    Container,
+    Grid,
+    IconButton,
+    useMediaQuery,
+    useTheme,
+} from '@mui/material';
 import {
     DEFAULT_POST_PAGE_SIZE,
     POST_ACTIONS_HEIGHT,
@@ -33,6 +39,8 @@ type CategoryProps = {
 };
 
 const Category: FC<CategoryProps> = ({ category }) => {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const [page, setPage] = useState(1);
     const [searchedValue, setSearchedValue] = useState('');
     const { data, isLoading } = useGetCategoryPosts(
@@ -74,10 +82,11 @@ const Category: FC<CategoryProps> = ({ category }) => {
                 <IconButton
                     sx={{
                         position: 'absolute',
-                        top: 24,
-                        left: 24,
+                        top: 23,
+                        left: isSmallScreen ? 15 : 23,
                         padding: 0,
                     }}
+                    color="inherit"
                 >
                     <ArrowBackIcon />
                 </IconButton>

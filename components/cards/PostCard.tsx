@@ -4,9 +4,7 @@ import {
     CardActions,
     CardContent,
     CardMedia,
-    Chip,
     Grid,
-    Stack,
     Typography,
 } from '@mui/material';
 
@@ -14,6 +12,7 @@ import { CardComponentProps } from '../../lib/types';
 import { FC } from 'react';
 import { IPost } from '../../lib/sanityTypes';
 import Link from 'next/link';
+import PostTags from './PostTags';
 import { formatDistanceToNow } from 'date-fns';
 import { getPostHref } from '../../lib/routeHelpers';
 import { urlForImage } from '../../lib/sanity';
@@ -79,13 +78,7 @@ const PostCard: FC<PostCardProps> = ({
                 </CardActionArea>
             </Link>
             <CardActions sx={{ minHeight: actionsHeight }}>
-                {(post.tags ?? []).length > 0 && (
-                    <Stack direction="row" spacing={1}>
-                        {post.tags.map(t => (
-                            <Chip key={t.value} label={t.label} />
-                        ))}
-                    </Stack>
-                )}
+                <PostTags tags={post.tags} />
             </CardActions>
         </Card>
     );

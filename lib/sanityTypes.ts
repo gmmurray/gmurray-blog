@@ -47,6 +47,6 @@ export interface IPost extends ISanityEntity {
     publishedAt: Date;
     slug: ISlug;
     summary: string;
-    tags: ITag[];
+    tags?: ITag[];
     title: string;
 }
