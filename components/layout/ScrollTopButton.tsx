@@ -23,7 +23,7 @@ const FloatingScrollTopButton: FC<BaseScrollTopButtonProps> = ({
             role="presentation"
             sx={{
                 position: 'fixed',
-                bottom: 96,
+                bottom: 116,
                 right: 16,
             }}
         >

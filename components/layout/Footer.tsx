@@ -1,5 +1,13 @@
-import { AppBar, Grid, useMediaQuery, useTheme } from '@mui/material';
+import {
+    AppBar,
+    Button,
+    Grid,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from '@mui/material';
 
+import Link from 'next/link';
 import ScrollTopButton from './ScrollTopButton';
 
 const Footer = () => {
@@ -14,7 +22,7 @@ const Footer = () => {
             direction="row"
             justifyContent="center"
             alignItems="center"
-            sx={{ height: '80px' }}
+            sx={{ height: '100px' }}
         >
             <Grid item />
             {!isXlScreen && (
@@ -23,7 +31,14 @@ const Footer = () => {
                 </Grid>
             )}
             <Grid item>
-                Copyright&#169; Greg Murray {new Date().getFullYear()}
+                <Link href="/" passHref>
+                    <Button color="inherit">home</Button>
+                </Link>
+            </Grid>
+            <Grid item>
+                <Typography variant="caption">
+                    Copyright&#169; Greg Murray {new Date().getFullYear()}
+                </Typography>
             </Grid>
             <Grid item />
         </AppBar>
