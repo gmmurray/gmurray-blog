@@ -1,6 +1,7 @@
 import { FC, Fragment } from 'react';
 import { useMediaQuery, useTheme } from '@mui/material';
 
+import Footer from './Footer';
 import ScrollTopButton from './ScrollTopButton';
 
 const Layout: FC = ({ children }) => {
@@ -10,7 +11,8 @@ const Layout: FC = ({ children }) => {
         <Fragment>
             <span id="topOfPage" />
             {children}
-            {isXlScreen && <ScrollTopButton />}
+            {isXlScreen && <ScrollTopButton type="floating" />}
+            <Footer />
         </Fragment>
     );
 };

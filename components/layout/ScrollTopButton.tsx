@@ -1,10 +1,49 @@
-import { Fab, Slide, useScrollTrigger } from '@mui/material';
-import React, { useCallback } from 'react';
+import { Button, Fab, Slide, useScrollTrigger } from '@mui/material';
+import React, { FC, useCallback } from 'react';
 
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { Box } from '@mui/system';
 
-const ScrollTopButton = () => {
+type ScrollTopButtonProps = {
+    type: 'floating' | 'footer';
+};
+
+type BaseScrollTopButtonProps = {
+    scrollTrigger: boolean;
+    handleClick: (event: any) => void;
+};
+
+const FloatingScrollTopButton: FC<BaseScrollTopButtonProps> = ({
+    scrollTrigger,
+    handleClick,
+}) => (
+    <Slide in={scrollTrigger} direction="up">
+        <Box
+            onClick={handleClick}
+            role="presentation"
+            sx={{
+                position: 'fixed',
+                bottom: 96,
+                right: 16,
+            }}
+        >
+            <Fab variant="extended" color="primary">
+                <ArrowUpwardIcon sx={{ mr: 1 }} />
+                back to top
+            </Fab>
+        </Box>
+    </Slide>
+);
+
+const FooterScrollTopButton: FC<BaseScrollTopButtonProps> = ({
+    handleClick,
+}) => (
+    <Button color="inherit" onClick={handleClick} sx={{ p: 0 }}>
+        back to top
+    </Button>
+);
+
+const ScrollTopButton: FC<ScrollTopButtonProps> = ({ type }) => {
     const scrollTrigger = useScrollTrigger({
         disableHysteresis: true,
         threshold: 300,
@@ -22,12 +61,25 @@ const ScrollTopButton = () => {
         },
         [],
     );
+    const buttonProps = {
+        handleClick,
+        scrollTrigger,
+    };
+    return type === 'floating' ? (
+        <FloatingScrollTopButton {...buttonProps} />
+    ) : (
+        <FooterScrollTopButton {...buttonProps} />
+    );
     return (
         <Slide in={scrollTrigger} direction="up">
             <Box
                 onClick={handleClick}
                 role="presentation"
-                sx={{ position: 'fixed', bottom: 16, right: 16 }}
+                sx={{
+                    position: 'fixed',
+                    bottom: 96,
+                    right: 16,
+                }}
             >
                 <Fab variant="extended" color="primary">
                     <ArrowUpwardIcon sx={{ mr: 1 }} />

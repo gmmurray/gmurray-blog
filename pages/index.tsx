@@ -32,7 +32,7 @@ type IndexProps = {
 
 const Index: FC<IndexProps> = ({ posts, categories }) => {
     return (
-        <Container sx={{ mt: 3 }}>
+        <Container sx={{ mt: 3, mb: 3 }}>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={4}>
                     <AuthorCard {...cardProps} />
