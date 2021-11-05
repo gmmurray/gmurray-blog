@@ -1,5 +1,6 @@
 import { IPost } from './sanityTypes';
 import { categoryPostsQuery } from './sanityQueries';
+import { createSearchString } from './queryHelpers';
 import { sanityClient } from '../lib/config';
 import { useQuery } from 'react-query';
 
@@ -14,7 +15,7 @@ const getCategoryPosts = async (
     count: number,
     search: string = '',
 ) => {
-    const searchString = '*' + search + '*';
+    const searchString = createSearchString(search);
     const start = (currPage - 1) * count;
     const end = start + count;
     return await sanityClient.fetch<CategoryPostResponse>(categoryPostsQuery, {

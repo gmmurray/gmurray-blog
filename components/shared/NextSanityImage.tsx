@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { IMedia } from '../../lib/sanityTypes';
-import { ImageProps } from 'next/image';
 import Img from 'next/image';
 import { sanityClient } from '../../lib/config';
 import { useNextSanityImage } from 'next-sanity-image';

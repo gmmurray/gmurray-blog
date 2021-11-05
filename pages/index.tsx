@@ -1,5 +1,4 @@
 import { Container, Grid, Grow } from '@mui/material';
-import { FC, Fragment } from 'react';
 import { ICategory, IPost } from '../lib/sanityTypes';
 import {
     POST_ACTIONS_HEIGHT,
@@ -10,6 +9,7 @@ import {
 } from '../lib/constants';
 
 import AuthorCard from '../components/cards/AuthorCard';
+import { FC } from 'react';
 import { GetStaticProps } from 'next';
 import IntroductionCard from '../components/cards/IntroductionCard';
 import PostCard from '../components/cards/PostCard';

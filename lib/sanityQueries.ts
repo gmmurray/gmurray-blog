@@ -1,22 +1,3 @@
-const postFields = `
-_id,
-title,
-slug,
-mainImage,
-mainImageSrc,
-category,
-tags,
-publishedAt,
-body,
-summary
-`;
-
-const categoryFields = `
-title,
-slug,
-description
-`;
-
 export const indexQuery = `
 {
     "posts": *[_type == 'post'][0...5] | order(date desc, publishedAt desc) {

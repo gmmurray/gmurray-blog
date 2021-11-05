@@ -66,16 +66,6 @@ const Category: FC<CategoryProps> = ({ category }) => {
     const canClickNext = !!data && data.total > page * pageSize;
     const canClickPrev = page !== 1;
 
-    const renderContent = () => {
-        if (isLoading) return <div>loading...</div>;
-        else if (!data || data.data.length === 0) return <div>no data</div>;
-
-        return data.data.map(post => (
-            <div key={post._id}>
-                <Link href={getPostHref(post)}>{post.title}</Link>
-            </div>
-        ));
-    };
     return (
         <Fragment>
             <Link href="/" passHref>

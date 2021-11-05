@@ -29,59 +29,53 @@ const PostCard: FC<PostCardProps> = ({
     elevation,
     imageHeight,
     post,
-}) => {
-    return (
-        <Card elevation={elevation} sx={{ minHeight: cardHeight }}>
-            <Link href={getPostHref(post)} passHref>
-                <CardActionArea>
-                    <CardMedia
-                        sx={{
-                            backgroundImage: `url(${urlForImage(
-                                post.mainImage,
-                            )})`,
-                            minHeight: imageHeight,
-                        }}
+}) => (
+    <Card elevation={elevation} sx={{ minHeight: cardHeight }}>
+        <Link href={getPostHref(post)} passHref>
+            <CardActionArea>
+                <CardMedia
+                    sx={{
+                        backgroundImage: `url(${urlForImage(post.mainImage)})`,
+                        minHeight: imageHeight,
+                    }}
+                >
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="flex-start"
+                        alignItems="flex-end"
+                        minHeight={imageHeight}
+                        padding={2}
                     >
-                        <Grid
-                            container
-                            direction="row"
-                            justifyContent="flex-start"
-                            alignItems="flex-end"
-                            minHeight={imageHeight}
-                            padding={2}
-                        >
-                            <Grid item>
-                                <Typography variant="h4" color="white">
-                                    {post.title}
-                                </Typography>
-                                <Typography
-                                    variant="subtitle1"
-                                    color="white"
-                                    fontStyle="italic"
-                                >
-                                    {formatDistanceToNow(
-                                        new Date(post.publishedAt),
-                                        { addSuffix: true },
-                                    )}
-                                </Typography>
-                                <Typography variant="subtitle1" color="white">
-                                    in {post.category.title}
-                                </Typography>
-                            </Grid>
+                        <Grid item>
+                            <Typography variant="h4" color="white">
+                                {post.title}
+                            </Typography>
+                            <Typography
+                                variant="subtitle1"
+                                color="white"
+                                fontStyle="italic"
+                            >
+                                {formatDistanceToNow(
+                                    new Date(post.publishedAt),
+                                    { addSuffix: true },
+                                )}
+                            </Typography>
+                            <Typography variant="subtitle1" color="white">
+                                in {post.category.title}
+                            </Typography>
                         </Grid>
-                    </CardMedia>
-                    <CardContent
-                        sx={{ minHeight: contentHeight - imageHeight }}
-                    >
-                        <Typography variant="body1">{post.summary}</Typography>
-                    </CardContent>
-                </CardActionArea>
-            </Link>
-            <CardActions sx={{ minHeight: actionsHeight }}>
-                <PostTags tags={post.tags} />
-            </CardActions>
-        </Card>
-    );
-};
+                    </Grid>
+                </CardMedia>
+                <CardContent sx={{ minHeight: contentHeight - imageHeight }}>
+                    <Typography variant="body1">{post.summary}</Typography>
+                </CardContent>
+            </CardActionArea>
+        </Link>
+        <CardActions sx={{ minHeight: actionsHeight }}>
+            <PostTags tags={post.tags} />
+        </CardActions>
+    </Card>
+);
 
 export default PostCard;

@@ -35,7 +35,7 @@ const CategoryPostCards: FC<CategoryPostCardsProps> = ({
                 <Grid item xs={12}>
                     <CardPlaceholder
                         loading
-                        message="quality content incoming..."
+                        message="Quality content incoming..."
                         {...cardProps}
                     />
                 </Grid>
@@ -44,7 +44,7 @@ const CategoryPostCards: FC<CategoryPostCardsProps> = ({
             return (
                 <Grid item xs={12}>
                     <CardPlaceholder
-                        message="no posts found"
+                        message="No posts found"
                         icon={
                             <SentimentVeryDissatisfiedIcon
                                 sx={{ fontSize: 40 }}

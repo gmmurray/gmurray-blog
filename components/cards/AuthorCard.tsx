@@ -5,12 +5,12 @@ import {
     CardMedia,
     Typography,
 } from '@mui/material';
-import { introAuthoImgSrc, introAuthorText } from '../../lib/staticContent';
 
 import { Box } from '@mui/system';
 import { CardComponentProps } from '../../lib/types';
 import { FC } from 'react';
 import Link from 'next/link';
+import { introStaticContent } from '../../lib/staticContent';
 
 type AuthorCardProps = {} & CardComponentProps;
 
@@ -28,16 +28,18 @@ const AuthorCard: FC<AuthorCardProps> = ({
     >
         <CardMedia
             component="img"
-            src={introAuthoImgSrc}
-            alt={`${introAuthorText} image`}
+            src={introStaticContent.authorImage}
+            alt={`${introStaticContent.authorText} image`}
             height={contentHeight}
             sx={{ minHeight: contentHeight }}
         />
         <CardActions sx={{ minHeight: actionsHeight }}>
             <Box sx={{ ml: 1 }}>
-                <Typography variant="body1">{introAuthorText}</Typography>
+                <Typography variant="body1">
+                    {introStaticContent.authorText}
+                </Typography>
             </Box>
-            <Link href="https://gregmurray.org" passHref>
+            <Link href={introStaticContent.webUrl} passHref>
                 <Button sx={{ ml: 'auto' }}>About</Button>
             </Link>
         </CardActions>

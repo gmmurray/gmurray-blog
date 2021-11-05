@@ -70,24 +70,6 @@ const ScrollTopButton: FC<ScrollTopButtonProps> = ({ type }) => {
     ) : (
         <FooterScrollTopButton {...buttonProps} />
     );
-    return (
-        <Slide in={scrollTrigger} direction="up">
-            <Box
-                onClick={handleClick}
-                role="presentation"
-                sx={{
-                    position: 'fixed',
-                    bottom: 96,
-                    right: 16,
-                }}
-            >
-                <Fab variant="extended" color="primary">
-                    <ArrowUpwardIcon sx={{ mr: 1 }} />
-                    back to top
-                </Fab>
-            </Box>
-        </Slide>
-    );
 };
 
 export default ScrollTopButton;

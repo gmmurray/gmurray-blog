@@ -17,7 +17,7 @@ import { CardComponentProps } from '../../lib/types';
 import { ICategory } from '../../lib/sanityTypes';
 import Link from 'next/link';
 import { getCategoryHref } from '../../lib/routeHelpers';
-import { introText } from '../../lib/staticContent';
+import { introStaticContent } from '../../lib/staticContent';
 import { urlForImage } from '../../lib/sanity';
 import { useTheme } from '@mui/system';
 
@@ -57,7 +57,9 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
                 container
             >
                 <Grid item xs={12}>
-                    <Typography variant="body1">{introText}</Typography>
+                    <Typography variant="body1">
+                        {introStaticContent.welcomeText}
+                    </Typography>
                 </Grid>
                 {categories.length > 0 && (
                     <Grid item xs={12}>

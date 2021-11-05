@@ -9,7 +9,6 @@ import { FC, Fragment } from 'react';
 import { postQuery, postsQuery } from '../../lib/sanityQueries';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Box } from '@mui/system';
 import { GetStaticProps } from 'next';
 import { IPost } from '../../lib/sanityTypes';
 import Link from 'next/link';
