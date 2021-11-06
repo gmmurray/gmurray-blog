@@ -1,11 +1,14 @@
-import { Container, Grid } from '@mui/material';
 import {
+    CATEGORY_CARD_HEIGHT,
+    CATEGORY_CONTENT_HEIGHT,
+    CATEGORY_IMAGE_HEIGHT,
     DEFAULT_POST_PAGE_SIZE,
     POST_ACTIONS_HEIGHT,
     POST_CONTENT_HEIGHT,
     POST_IMAGE_HEIGHT,
     POST_PIXEL_HEIGHT,
 } from '../../lib/constants';
+import { Container, Grid } from '@mui/material';
 import { FC, Fragment, useCallback, useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { categoriesQuery, categoryQuery } from '../../lib/sanityQueries';
@@ -18,13 +21,20 @@ import { sanityClient } from '../../lib/config';
 import { useGetCategoryPosts } from '../../lib/queryHooks';
 
 const pageSize = DEFAULT_POST_PAGE_SIZE;
-const cardProps = {
+const categoryCardProps = {
+    cardHeight: CATEGORY_CARD_HEIGHT,
+    contentHeight: CATEGORY_CONTENT_HEIGHT,
+    actionsHeight: POST_ACTIONS_HEIGHT,
+    imageHeight: CATEGORY_IMAGE_HEIGHT,
+    elevation: 3,
+};
+const postCardProps = {
     cardHeight: POST_PIXEL_HEIGHT,
     contentHeight: POST_CONTENT_HEIGHT,
     actionsHeight: POST_ACTIONS_HEIGHT,
     elevation: 3,
+    cardImageHeight: POST_IMAGE_HEIGHT,
 };
-const cardImageHeight = POST_IMAGE_HEIGHT;
 
 type CategoryProps = {
     category: ICategory;
@@ -66,7 +76,7 @@ const Category: FC<CategoryProps> = ({ category }) => {
                             category={category}
                             onSearchSubmit={handleSearchSubmit}
                             onReset={handleReset}
-                            {...cardProps}
+                            {...categoryCardProps}
                         />
                     </Grid>
                     <CategoryPostCards
@@ -76,8 +86,7 @@ const Category: FC<CategoryProps> = ({ category }) => {
                         canClickNext={canClickNext}
                         onPrevPage={handlePrevPage}
                         canClickPrev={canClickPrev}
-                        cardImageHeight={cardImageHeight}
-                        {...cardProps}
+                        {...postCardProps}
                     />
                 </Grid>
             </Container>

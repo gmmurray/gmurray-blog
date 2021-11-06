@@ -5,6 +5,8 @@ import {
     Grid,
     Link as MUILink,
     Typography,
+    useMediaQuery,
+    useTheme,
 } from '@mui/material';
 
 import { Box } from '@mui/system';
@@ -22,6 +24,8 @@ type PostPageCardProps = {
 };
 
 const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
     const showUpdated = new Date(post.publishedAt) < new Date(post._updatedAt);
 
     return (
@@ -38,7 +42,7 @@ const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
                     justifyContent="flex-start"
                     alignItems="flex-end"
                     minHeight="300px"
-                    padding={4}
+                    padding={isSmallScreen ? 2 : 4}
                 >
                     <Grid item>
                         <Typography variant="h4" color="white">
@@ -72,8 +76,8 @@ const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
                 </Grid>
             </CardMedia>
             <CardContent>
-                <Grid container spacing={1}>
-                    <Grid item xs={12} width="100%" display="flex" paddingX={2}>
+                <Grid container spacing={1} padding={isSmallScreen ? 0 : 4}>
+                    <Grid item xs={12} width="100%" display="flex">
                         <Typography>
                             by {postPageStaticContent.author}
                         </Typography>
@@ -95,7 +99,7 @@ const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
                         </Grid>
                     )}
                     <Grid item xs={12}>
-                        <Box paddingX={2}>
+                        <Box>
                             <PortableText blocks={post.body} />
                         </Box>
                     </Grid>

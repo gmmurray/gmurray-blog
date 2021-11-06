@@ -1,4 +1,3 @@
-import { Box, useTheme } from '@mui/system';
 import {
     Card,
     CardActions,
@@ -6,10 +5,10 @@ import {
     Grid,
     Link as MUILink,
     Typography,
-    useMediaQuery,
 } from '@mui/material';
 import React, { FC } from 'react';
 
+import { Box } from '@mui/system';
 import { CardComponentProps } from '../../lib/types';
 import { ICategory } from '../../lib/sanityTypes';
 import Link from 'next/link';
@@ -29,9 +28,6 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
     elevation,
     categories,
 }) => {
-    const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
-
     const numLists = Math.ceil(categories.length / CATEGORIES_PER_LIST);
     const listsOfCategories: ICategory[][] = numLists > 1 ? [[], []] : [[]];
     categories.forEach((c, i) => {
@@ -50,6 +46,7 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
                 sx={{ minHeight: contentHeight, maxHeight: contentHeight }}
                 component={Grid}
                 container
+                spacing={2}
             >
                 <Grid item xs={12}>
                     <Typography variant="body1">

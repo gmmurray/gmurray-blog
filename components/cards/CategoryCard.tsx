@@ -2,6 +2,7 @@ import {
     Avatar,
     Card,
     CardContent,
+    CardMedia,
     Grid,
     IconButton,
     InputAdornment,
@@ -12,6 +13,7 @@ import {
 } from '@mui/material';
 import { ChangeEvent, FC, useCallback, useState } from 'react';
 
+import { Box } from '@mui/system';
 import { CardComponentProps } from '../../lib/types';
 import ClearIcon from '@mui/icons-material/Clear';
 import { ICategory } from '../../lib/sanityTypes';
@@ -22,6 +24,7 @@ type CategoryCardProps = {
     category: ICategory;
     onSearchSubmit: (value: string) => any;
     onReset: () => any;
+    imageHeight: number;
 } & CardComponentProps;
 
 const CategoryCard: FC<CategoryCardProps> = ({
@@ -55,6 +58,25 @@ const CategoryCard: FC<CategoryCardProps> = ({
             elevation={cardProps.elevation}
             sx={{ minHeight: cardProps.cardHeight }}
         >
+            <CardMedia
+                sx={{
+                    backgroundImage: `url(${urlForImage(category.image)})`,
+                    minHeight: cardProps.imageHeight,
+                }}
+            >
+                <Grid
+                    container
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    textAlign="center"
+                    minHeight={cardProps.imageHeight}
+                >
+                    <Grid item>
+                        <Typography variant="h3">{category.title}</Typography>
+                    </Grid>
+                </Grid>
+            </CardMedia>
             <CardContent
                 sx={{
                     minHeight: cardProps.contentHeight,
@@ -66,16 +88,16 @@ const CategoryCard: FC<CategoryCardProps> = ({
                 alignItems="center"
                 justifyContent="center"
             >
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                     <Avatar
                         // @ts-ignore
                         src={urlForImage(category.image)}
                         sx={{ width: 56, height: 56 }}
                     />
-                </Grid>
-                <Grid item xs={12}>
+                </Grid> */}
+                {/* <Grid item xs={12}>
                     <Typography variant="h3">{category.title}</Typography>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12}>
                     <Typography variant="body1">
                         {category.description}
