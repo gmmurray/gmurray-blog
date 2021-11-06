@@ -1,10 +1,4 @@
-import {
-    Container,
-    Grid,
-    IconButton,
-    useMediaQuery,
-    useTheme,
-} from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import {
     DEFAULT_POST_PAGE_SIZE,
     POST_ACTIONS_HEIGHT,
@@ -16,12 +10,10 @@ import { FC, Fragment, useCallback, useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { categoriesQuery, categoryQuery } from '../../lib/sanityQueries';
 
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CategoryCard from '../../components/cards/CategoryCard';
 import CategoryPostCards from '../../components/cards/CategoryPostCards';
 import { ICategory } from '../../lib/sanityTypes';
-import Link from 'next/link';
-import { getPostHref } from '../../lib/routeHelpers';
+import TopNavButton from '../../components/shared/TopNavButton';
 import { sanityClient } from '../../lib/config';
 import { useGetCategoryPosts } from '../../lib/queryHooks';
 
@@ -39,8 +31,6 @@ type CategoryProps = {
 };
 
 const Category: FC<CategoryProps> = ({ category }) => {
-    const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const [page, setPage] = useState(1);
     const [searchedValue, setSearchedValue] = useState('');
     const { data, isLoading } = useGetCategoryPosts(
@@ -68,19 +58,7 @@ const Category: FC<CategoryProps> = ({ category }) => {
 
     return (
         <Fragment>
-            <Link href="/" passHref>
-                <IconButton
-                    sx={{
-                        position: 'absolute',
-                        top: 23,
-                        left: isSmallScreen ? 15 : 23,
-                        padding: 0,
-                    }}
-                    color="inherit"
-                >
-                    <ArrowBackIcon />
-                </IconButton>
-            </Link>
+            <TopNavButton route="/" text="Back to home" />
             <Container sx={{ mt: 9, mb: 3 }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>

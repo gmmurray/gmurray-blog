@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 type CodeSerializerProps = {
     node?: {
@@ -16,7 +16,7 @@ const CodeSerializer: FC<CodeSerializerProps> = ({
     return (
         <SyntaxHighlighter
             language={language}
-            style={atomOneDark}
+            style={atomOneDarkReasonable}
             showLineNumbers
         >
             {code}

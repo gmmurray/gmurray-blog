@@ -1,18 +1,11 @@
-import {
-    Button,
-    Container,
-    Grid,
-    useMediaQuery,
-    useTheme,
-} from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { FC, Fragment } from 'react';
 import { postQuery, postsQuery } from '../../lib/sanityQueries';
 
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { GetStaticProps } from 'next';
 import { IPost } from '../../lib/sanityTypes';
-import Link from 'next/link';
 import PostPageCard from '../../components/cards/PostPageCard';
+import TopNavButton from '../../components/shared/TopNavButton';
 import { sanityClient } from '../../lib/config';
 
 type PostProps = {
@@ -20,25 +13,12 @@ type PostProps = {
 };
 
 const Post: FC<PostProps> = ({ post }) => {
-    const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     return (
         <Fragment>
-            <Link href={`/${post.category.slug.current}`} passHref>
-                <Button
-                    variant="text"
-                    startIcon={<ArrowBackIcon />}
-                    sx={{
-                        position: 'absolute',
-                        top: 20,
-                        left: isSmallScreen ? 15 : 23,
-                        paddingLeft: 0,
-                    }}
-                    color="inherit"
-                >
-                    Back to category
-                </Button>
-            </Link>
+            <TopNavButton
+                route={`/${post.category.slug.current}`}
+                text="Back to category"
+            />
             <Container sx={{ mt: 9, mb: 3 }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>

@@ -38,7 +38,7 @@ const FloatingScrollTopButton: FC<BaseScrollTopButtonProps> = ({
 const FooterScrollTopButton: FC<BaseScrollTopButtonProps> = ({
     handleClick,
 }) => (
-    <Button color="inherit" onClick={handleClick} sx={{ p: 0 }}>
+    <Button color="primary" onClick={handleClick} sx={{ p: 0 }}>
         back to top
     </Button>
 );
