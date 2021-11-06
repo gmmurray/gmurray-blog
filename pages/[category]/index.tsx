@@ -9,7 +9,7 @@ import {
     POST_PIXEL_HEIGHT,
 } from '../../lib/constants';
 import { Container, Grid } from '@mui/material';
-import { FC, Fragment, useCallback, useState } from 'react';
+import { FC, Fragment, useCallback, useEffect, useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { categoriesQuery, categoryQuery } from '../../lib/sanityQueries';
 
@@ -17,6 +17,7 @@ import CategoryCard from '../../components/cards/CategoryCard';
 import CategoryPostCards from '../../components/cards/CategoryPostCards';
 import { ICategory } from '../../lib/sanityTypes';
 import TopNavButton from '../../components/shared/TopNavButton';
+import { getPageTitle } from '../../lib/routeHelpers';
 import { sanityClient } from '../../lib/config';
 import { useGetCategoryPosts } from '../../lib/queryHooks';
 
@@ -41,6 +42,9 @@ type CategoryProps = {
 };
 
 const Category: FC<CategoryProps> = ({ category }) => {
+    useEffect(() => {
+        document.title = getPageTitle(category.title);
+    }, [category.title]);
     const [page, setPage] = useState(1);
     const [searchedValue, setSearchedValue] = useState('');
     const { data, isLoading } = useGetCategoryPosts(

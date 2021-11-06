@@ -13,3 +13,5 @@ export const introStaticContent = {
 export const postPageStaticContent = {
     author: 'Greg Murray',
 };
+
+export const blogTitle = `Greg Murray's Blog`;

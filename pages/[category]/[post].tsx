@@ -1,11 +1,12 @@
 import { Container, Grid } from '@mui/material';
-import { FC, Fragment } from 'react';
+import { FC, Fragment, useEffect } from 'react';
 import { postQuery, postsQuery } from '../../lib/sanityQueries';
 
 import { GetStaticProps } from 'next';
 import { IPost } from '../../lib/sanityTypes';
 import PostPageCard from '../../components/cards/PostPageCard';
 import TopNavButton from '../../components/shared/TopNavButton';
+import { getPageTitle } from '../../lib/routeHelpers';
 import { sanityClient } from '../../lib/config';
 
 type PostProps = {
@@ -13,6 +14,9 @@ type PostProps = {
 };
 
 const Post: FC<PostProps> = ({ post }) => {
+    useEffect(() => {
+        document.title = getPageTitle(post.title);
+    }, [post.title]);
     return (
         <Fragment>
             <TopNavButton
