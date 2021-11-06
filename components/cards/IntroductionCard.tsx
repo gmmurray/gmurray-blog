@@ -1,18 +1,13 @@
+import { Box, useTheme } from '@mui/system';
 import {
-    Avatar,
     Card,
     CardActions,
     CardContent,
     Grid,
-    List,
-    ListItemAvatar,
-    ListItemButton,
-    ListItemText,
     Link as MUILink,
     Typography,
     useMediaQuery,
 } from '@mui/material';
-import { Box, useTheme } from '@mui/system';
 import React, { FC } from 'react';
 
 import { CardComponentProps } from '../../lib/types';
@@ -20,7 +15,6 @@ import { ICategory } from '../../lib/sanityTypes';
 import Link from 'next/link';
 import { getCategoryHref } from '../../lib/routeHelpers';
 import { introStaticContent } from '../../lib/staticContent';
-import { urlForImage } from '../../lib/sanity';
 
 const CATEGORIES_PER_LIST = 3;
 
