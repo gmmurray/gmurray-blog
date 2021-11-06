@@ -8,9 +8,11 @@ import {
     ListItemAvatar,
     ListItemButton,
     ListItemText,
+    Link as MUILink,
     Typography,
     useMediaQuery,
 } from '@mui/material';
+import { Box, useTheme } from '@mui/system';
 import React, { FC } from 'react';
 
 import { CardComponentProps } from '../../lib/types';
@@ -19,7 +21,6 @@ import Link from 'next/link';
 import { getCategoryHref } from '../../lib/routeHelpers';
 import { introStaticContent } from '../../lib/staticContent';
 import { urlForImage } from '../../lib/sanity';
-import { useTheme } from '@mui/system';
 
 const CATEGORIES_PER_LIST = 3;
 
@@ -63,50 +64,28 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
                 </Grid>
                 {categories.length > 0 && (
                     <Grid item xs={12}>
-                        <Typography variant="h5">Categories</Typography>
-                        <Grid container>
-                            {listsOfCategories.map((cats, i) => (
-                                <Grid key={i} item xs={6} alignItems="center">
-                                    <List
-                                        dense
-                                        sx={{
-                                            pt: isSmallScreen ? 0 : undefined,
-                                        }}
-                                    >
-                                        {cats.map((c, index) => (
-                                            <Link
-                                                href={getCategoryHref(c)}
-                                                passHref
-                                                key={c._id}
-                                            >
-                                                <ListItemButton>
-                                                    <ListItemAvatar>
-                                                        <Avatar
-                                                            // @ts-ignore
-                                                            src={
-                                                                c.image
-                                                                    ? urlForImage(
-                                                                          c.image,
-                                                                      )
-                                                                    : undefined
-                                                            }
-                                                        >
-                                                            {c.image
-                                                                ? null
-                                                                : c.title[0]}
-                                                        </Avatar>
-                                                    </ListItemAvatar>
-                                                    <ListItemText
-                                                        primary={c.title}
-                                                        secondary={`${c.postCount} post(s)`}
-                                                    />
-                                                </ListItemButton>
-                                            </Link>
-                                        ))}
-                                    </List>
+                        <Box>
+                            <Typography variant="h5">Categories</Typography>
+                        </Box>
+                        <Box>
+                            {categories.map(c => (
+                                <Grid key={c._id} container>
+                                    <Grid item>
+                                        <Link
+                                            href={getCategoryHref(c)}
+                                            passHref
+                                        >
+                                            <MUILink color="primary">
+                                                {c.title}
+                                            </MUILink>
+                                        </Link>
+                                    </Grid>
+                                    <Grid item sx={{ ml: 'auto' }}>
+                                        {c.postCount} post(s)
+                                    </Grid>
                                 </Grid>
                             ))}
-                        </Grid>
+                        </Box>
                     </Grid>
                 )}
             </CardContent>
