@@ -12,7 +12,12 @@ const PostTags: FC<PostTagsProps> = ({ tags }) => {
     return (
         <Stack direction="row" spacing={1}>
             {tags.map(t => (
-                <Chip key={t.value} label={t.label} />
+                <Chip
+                    key={t.value}
+                    label={t.label}
+                    color="primary"
+                    variant="outlined"
+                />
             ))}
         </Stack>
     );

@@ -99,12 +99,14 @@ const CategoryCard: FC<CategoryCardProps> = ({
                                     <IconButton
                                         edge="end"
                                         onClick={handleSubmit}
+                                        color="primary"
                                     >
                                         <SearchIcon />
                                     </IconButton>
                                     <IconButton
                                         edge="end"
                                         onClick={handleReset}
+                                        color="primary"
                                     >
                                         <ClearIcon />
                                     </IconButton>

@@ -32,11 +32,11 @@ const Footer = () => {
             )}
             <Grid item>
                 <Link href="/" passHref>
-                    <Button color="inherit">home</Button>
+                    <Button color="primary">home</Button>
                 </Link>
             </Grid>
             <Grid item>
-                <Typography variant="caption">
+                <Typography variant="caption" color="primary">
                     Copyright&#169; Greg Murray {new Date().getFullYear()}
                 </Typography>
             </Grid>

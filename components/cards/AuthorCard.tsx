@@ -40,7 +40,9 @@ const AuthorCard: FC<AuthorCardProps> = ({
                 </Typography>
             </Box>
             <Link href={introStaticContent.webUrl} passHref>
-                <Button sx={{ ml: 'auto' }}>About</Button>
+                <Button variant="contained" sx={{ ml: 'auto' }}>
+                    About
+                </Button>
             </Link>
         </CardActions>
     </Card>
