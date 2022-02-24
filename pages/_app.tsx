@@ -1,5 +1,5 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
-
+import '../styles.scss';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Layout from '../components/layout/Layout';

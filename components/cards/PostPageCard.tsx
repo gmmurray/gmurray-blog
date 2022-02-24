@@ -18,6 +18,8 @@ import PostTags from './PostTags';
 import { formatDistanceToNow } from 'date-fns';
 import { postPageStaticContent } from '../../lib/staticContent';
 import { urlForImage } from '../../lib/sanity';
+// @ts-ignore
+import ReactUtterances from 'react-utterances';
 
 type PostPageCardProps = {
     post: IPost;
@@ -102,6 +104,13 @@ const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
                         <Box>
                             <PortableText blocks={post.body} />
                         </Box>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <ReactUtterances
+                            repo="gmmurray/gmurray-blog-comments"
+                            type="pathname"
+                            theme="dark-blue"
+                        />
                     </Grid>
                 </Grid>
             </CardContent>
