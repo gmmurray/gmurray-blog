@@ -20,6 +20,7 @@ import { postPageStaticContent } from '../../lib/staticContent';
 import { urlForImage } from '../../lib/sanity';
 // @ts-ignore
 import ReactUtterances from 'react-utterances';
+import { UTTERANCES_REPO } from '../../lib/constants';
 
 type PostPageCardProps = {
     post: IPost;
@@ -107,9 +108,8 @@ const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
                     </Grid>
                     <Grid item xs={12}>
                         <ReactUtterances
-                            repo="gmmurray/gmurray-blog-comments"
+                            repo={UTTERANCES_REPO}
                             type="pathname"
-                            theme="dark-blue"
                         />
                     </Grid>
                 </Grid>
