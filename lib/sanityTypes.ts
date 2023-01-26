@@ -43,7 +43,7 @@ export interface IPost extends ISanityEntity {
     body: PortableText[];
     category: ICategory;
     mainImage: IMedia;
-    mainImageSrc: string;
+    mainImageSrc?: string;
     publishedAt: Date;
     slug: ISlug;
     summary: string;

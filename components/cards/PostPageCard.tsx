@@ -15,12 +15,11 @@ import { IPost } from '../../lib/sanityTypes';
 import Link from 'next/link';
 import PortableText from '../shared/PortableText';
 import PostTags from './PostTags';
+import ReactUtterances from 'react-utterances';
+import { UTTERANCES_REPO } from '../../lib/constants';
 import { formatDistanceToNow } from 'date-fns';
 import { postPageStaticContent } from '../../lib/staticContent';
 import { urlForImage } from '../../lib/sanity';
-// @ts-ignore
-import ReactUtterances from 'react-utterances';
-import { UTTERANCES_REPO } from '../../lib/constants';
 
 type PostPageCardProps = {
     post: IPost;
@@ -65,17 +64,19 @@ const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
                             in {post.category.title}
                         </Typography>
                     </Grid>
-                    <Grid item marginLeft="auto">
-                        <Link href={post.mainImageSrc} passHref>
-                            <MUILink
-                                target="_blank"
-                                rel="noopener"
-                                sx={{ color: 'white' }}
-                            >
-                                Image source
-                            </MUILink>
-                        </Link>
-                    </Grid>
+                    {post.mainImageSrc && (
+                        <Grid item marginLeft="auto">
+                            <Link href={post.mainImageSrc} passHref>
+                                <MUILink
+                                    target="_blank"
+                                    rel="noopener"
+                                    sx={{ color: 'white' }}
+                                >
+                                    Image source
+                                </MUILink>
+                            </Link>
+                        </Grid>
+                    )}
                 </Grid>
             </CardMedia>
             <CardContent>
