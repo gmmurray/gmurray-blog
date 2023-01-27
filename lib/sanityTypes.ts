@@ -16,10 +16,10 @@ export interface IMedia {
     };
 }
 
-export interface PortableText {
+export interface IPortableText {
     _key: string;
     _type: string;
-    children: PortableText[];
+    children: IPortableText[];
     style: string;
     text: string;
 }
@@ -40,7 +40,7 @@ export interface ICategory extends ISanityEntity {
 }
 
 export interface IPost extends ISanityEntity {
-    body: PortableText[];
+    body: IPortableText[];
     category: ICategory;
     mainImage: IMedia;
     mainImageSrc?: string;

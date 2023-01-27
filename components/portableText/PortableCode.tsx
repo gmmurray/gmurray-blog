@@ -1,16 +1,9 @@
-import { FC } from 'react';
+import { PortableTextReactComponents } from '@portabletext/react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
-type CodeSerializerProps = {
-    node?: {
-        language?: string;
-        code?: string;
-    };
-};
-
-const CodeSerializer: FC<CodeSerializerProps> = ({
-    node: { language, code } = {},
+const PortableCode: PortableTextReactComponents['types']['code'] = ({
+    value: { language, code } = {},
 }) => {
     if (!code) return null;
     return (
@@ -24,4 +17,4 @@ const CodeSerializer: FC<CodeSerializerProps> = ({
     );
 };
 
-export default CodeSerializer;
+export default PortableCode;

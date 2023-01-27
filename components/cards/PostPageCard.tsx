@@ -13,11 +13,12 @@ import { Box } from '@mui/system';
 import { FC } from 'react';
 import { IPost } from '../../lib/sanityTypes';
 import Link from 'next/link';
-import PortableText from '../shared/PortableText';
+import { PortableText } from '@portabletext/react';
 import PostTags from './PostTags';
 import ReactUtterances from 'react-utterances';
 import { UTTERANCES_REPO } from '../../lib/constants';
 import { formatDistanceToNow } from 'date-fns';
+import { portableTextComponents } from '../shared/portableTextComponents';
 import { postPageStaticContent } from '../../lib/staticContent';
 import { urlForImage } from '../../lib/sanity';
 
@@ -104,7 +105,10 @@ const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
                     )}
                     <Grid item xs={12}>
                         <Box>
-                            <PortableText blocks={post.body} />
+                            <PortableText
+                                components={portableTextComponents}
+                                value={post.body}
+                            />
                         </Box>
                     </Grid>
                     <Grid item xs={12}>
