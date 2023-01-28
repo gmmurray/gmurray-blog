@@ -17,7 +17,7 @@ const PortableH2 = ({ children }: any) => {
     const link = router.asPath.split('#')[0] + '#' + hyphenated;
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Typography variant="h5" component="h2" id={hyphenated}>
                 {content}
             </Typography>

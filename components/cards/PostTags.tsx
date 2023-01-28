@@ -10,7 +10,7 @@ type PostTagsProps = {
 const PostTags: FC<PostTagsProps> = ({ tags }) => {
     if (!tags || tags.length === 0) return null;
     return (
-        <Stack direction="row" spacing={1} sx={{ overflow: 'auto' }}>
+        <Stack direction="row" spacing={1} sx={{ overflow: 'auto', pb: 2 }}>
             {tags.map(t => (
                 <Chip
                     key={t.value}
