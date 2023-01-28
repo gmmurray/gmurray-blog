@@ -1,11 +1,12 @@
 import { Container, Grid } from '@mui/material';
-import { FC, Fragment, useEffect } from 'react';
+import { FC, Fragment } from 'react';
 import { postQuery, postsQuery } from '../../lib/sanityQueries';
 
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import { IPost } from '../../lib/sanityTypes';
+import PageNav from '../../components/shared/PageNav';
 import PostPageCard from '../../components/cards/PostPageCard';
-import TopNavButton from '../../components/shared/TopNavButton';
 import { getPageTitle } from '../../lib/routeHelpers';
 import { sanityClient } from '../../lib/config';
 
@@ -14,17 +15,14 @@ type PostProps = {
 };
 
 const Post: FC<PostProps> = ({ post }) => {
-    useEffect(() => {
-        document.title = getPageTitle(post.title);
-    }, [post.title]);
     return (
         <Fragment>
-            <TopNavButton
-                route={`/${post.category.slug.current}`}
-                text="Back to category"
-            />
-            <Container sx={{ mt: 9, mb: 3 }}>
-                <Grid container spacing={3}>
+            <Head>
+                <title>{getPageTitle(post.title)}</title>
+            </Head>
+            <Container sx={{ mt: 1, mb: 3 }}>
+                <PageNav post={post} />
+                <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <PostPageCard post={post} />
                     </Grid>

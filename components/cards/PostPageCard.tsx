@@ -18,6 +18,7 @@ import PostTags from './PostTags';
 import ReactUtterances from 'react-utterances';
 import { UTTERANCES_REPO } from '../../lib/constants';
 import { formatDistanceToNow } from 'date-fns';
+import { getBackgroundImageStyle } from '../../lib/imageHelpers';
 import { portableTextComponents } from '../shared/portableTextComponents';
 import { postPageStaticContent } from '../../lib/staticContent';
 import { urlForImage } from '../../lib/sanity';
@@ -35,7 +36,9 @@ const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
         <Card elevation={3}>
             <CardMedia
                 sx={{
-                    backgroundImage: `url(${urlForImage(post.mainImage)})`,
+                    backgroundImage: getBackgroundImageStyle(
+                        urlForImage(post.mainImage),
+                    ),
                     minHeight: '300px',
                 }}
             >
@@ -62,7 +65,15 @@ const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
                             })}
                         </Typography>
                         <Typography variant="subtitle1" color="white">
-                            in {post.category.title}
+                            in{' '}
+                            <Link
+                                href={'/' + post.category.slug.current}
+                                passHref
+                            >
+                                <MUILink sx={{ color: 'white' }}>
+                                    {post.category.title}
+                                </MUILink>
+                            </Link>
                         </Typography>
                     </Grid>
                     {post.mainImageSrc && (

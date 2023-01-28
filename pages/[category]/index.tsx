@@ -1,3 +1,4 @@
+import { Box, Button, Container, Grid } from '@mui/material';
 import {
     CATEGORY_CARD_HEIGHT,
     CATEGORY_CONTENT_HEIGHT,
@@ -8,15 +9,15 @@ import {
     POST_IMAGE_HEIGHT,
     POST_PIXEL_HEIGHT,
 } from '../../lib/constants';
-import { Container, Grid } from '@mui/material';
-import { FC, Fragment, useCallback, useEffect, useState } from 'react';
+import { FC, Fragment, useCallback, useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { categoriesQuery, categoryQuery } from '../../lib/sanityQueries';
 
 import CategoryCard from '../../components/cards/CategoryCard';
 import CategoryPostCards from '../../components/cards/CategoryPostCards';
+import Head from 'next/head';
 import { ICategory } from '../../lib/sanityTypes';
-import TopNavButton from '../../components/shared/TopNavButton';
+import PageNav from '../../components/shared/PageNav';
 import { getPageTitle } from '../../lib/routeHelpers';
 import { sanityClient } from '../../lib/config';
 import { useGetCategoryPosts } from '../../lib/queryHooks';
@@ -42,9 +43,6 @@ type CategoryProps = {
 };
 
 const Category: FC<CategoryProps> = ({ category }) => {
-    useEffect(() => {
-        document.title = getPageTitle(category.title);
-    }, [category.title]);
     const [page, setPage] = useState(1);
     const [searchedValue, setSearchedValue] = useState('');
     const { data, isLoading } = useGetCategoryPosts(
@@ -72,8 +70,11 @@ const Category: FC<CategoryProps> = ({ category }) => {
 
     return (
         <Fragment>
-            <TopNavButton route="/" text="Back to home" />
-            <Container sx={{ mt: 9, mb: 3 }}>
+            <Head>
+                <title>{getPageTitle(category.title)}</title>
+            </Head>
+            <Container sx={{ mt: 1, mb: 3 }}>
+                <PageNav />
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <CategoryCard

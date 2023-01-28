@@ -18,6 +18,7 @@ import { CardComponentProps } from '../../lib/types';
 import ClearIcon from '@mui/icons-material/Clear';
 import { ICategory } from '../../lib/sanityTypes';
 import SearchIcon from '@mui/icons-material/Search';
+import { getBackgroundImageStyle } from '../../lib/imageHelpers';
 import { urlForImage } from '../../lib/sanity';
 
 type CategoryCardProps = {
@@ -60,7 +61,9 @@ const CategoryCard: FC<CategoryCardProps> = ({
         >
             <CardMedia
                 sx={{
-                    backgroundImage: `url(${urlForImage(category.image)})`,
+                    backgroundImage: getBackgroundImageStyle(
+                        urlForImage(category.image),
+                    ),
                     minHeight: cardProps.imageHeight,
                 }}
             >

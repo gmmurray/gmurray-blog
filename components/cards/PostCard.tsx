@@ -14,6 +14,7 @@ import { IPost } from '../../lib/sanityTypes';
 import Link from 'next/link';
 import PostTags from './PostTags';
 import { formatDistanceToNow } from 'date-fns';
+import { getBackgroundImageStyle } from '../../lib/imageHelpers';
 import { getPostHref } from '../../lib/routeHelpers';
 import { urlForImage } from '../../lib/sanity';
 
@@ -35,7 +36,9 @@ const PostCard: FC<PostCardProps> = ({
             <CardActionArea>
                 <CardMedia
                     sx={{
-                        backgroundImage: `url(${urlForImage(post.mainImage)})`,
+                        backgroundImage: getBackgroundImageStyle(
+                            urlForImage(post.mainImage),
+                        ),
                         minHeight: imageHeight,
                     }}
                 >
