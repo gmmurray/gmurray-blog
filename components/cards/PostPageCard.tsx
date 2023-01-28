@@ -51,7 +51,7 @@ const PostPageCard: FC<PostPageCardProps> = ({ post }) => {
                     padding={isSmallScreen ? 2 : 4}
                 >
                     <Grid item>
-                        <Typography variant="h4" color="white">
+                        <Typography variant="h4" component="h1" color="white">
                             {post.title}
                         </Typography>
                         <Typography

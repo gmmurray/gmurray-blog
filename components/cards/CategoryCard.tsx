@@ -76,7 +76,9 @@ const CategoryCard: FC<CategoryCardProps> = ({
                     minHeight={cardProps.imageHeight}
                 >
                     <Grid item>
-                        <Typography variant="h3">{category.title}</Typography>
+                        <Typography variant="h3" component="h1">
+                            {category.title}
+                        </Typography>
                     </Grid>
                 </Grid>
             </CardMedia>
@@ -91,16 +93,6 @@ const CategoryCard: FC<CategoryCardProps> = ({
                 alignItems="center"
                 justifyContent="center"
             >
-                {/* <Grid item xs={12}>
-                    <Avatar
-                        // @ts-ignore
-                        src={urlForImage(category.image)}
-                        sx={{ width: 56, height: 56 }}
-                    />
-                </Grid> */}
-                {/* <Grid item xs={12}>
-                    <Typography variant="h3">{category.title}</Typography>
-                </Grid> */}
                 <Grid item xs={12}>
                     <Typography variant="body1">
                         {category.description}

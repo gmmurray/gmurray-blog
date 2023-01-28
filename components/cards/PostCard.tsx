@@ -51,7 +51,11 @@ const PostCard: FC<PostCardProps> = ({
                         padding={2}
                     >
                         <Grid item>
-                            <Typography variant="h4" color="white">
+                            <Typography
+                                variant="h4"
+                                component="h2"
+                                color="white"
+                            >
                                 {post.title}
                             </Typography>
                             <Typography

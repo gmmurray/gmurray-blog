@@ -56,7 +56,9 @@ const IntroductionCard: FC<IntroductionCardProps> = ({
                 {categories.length > 0 && (
                     <Grid item xs={12}>
                         <Box>
-                            <Typography variant="h5">Categories</Typography>
+                            <Typography variant="h5" component="h3">
+                                Categories
+                            </Typography>
                         </Box>
                         <Box>
                             {categories.map(c => (
