@@ -4,6 +4,7 @@ import PortableCodeInline from '../portableText/PortableCodeInline';
 import PortableH2 from '../portableText/PortableH2';
 import PortableImage from '../portableText/PortableImage';
 import PortableLink from '../portableText/PortableLink';
+import PortableNextLink from '../portableText/PortableNextLink';
 import { PortableTextReactComponents } from '@portabletext/react';
 
 export const portableTextComponents: Partial<PortableTextReactComponents> = {
@@ -13,6 +14,7 @@ export const portableTextComponents: Partial<PortableTextReactComponents> = {
     },
     marks: {
         link: PortableLink,
+        nextLink: PortableNextLink,
         code: PortableCodeInline,
     },
     block: {
