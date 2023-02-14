@@ -1,3 +1,20 @@
 .utterances {
     min-width: 100%;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #030511;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ebaa02;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #976f08;
+}
