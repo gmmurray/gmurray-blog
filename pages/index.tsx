@@ -1,5 +1,8 @@
 import { Container, Grid, Grow } from '@mui/material';
-import { ICategory, IPost } from '../lib/sanityTypes';
+import {
+    HomePageStaticData,
+    getHomePageStaticData,
+} from '../lib/getHomePageStaticData';
 import {
     POST_ACTIONS_HEIGHT,
     POST_CONTENT_HEIGHT,
@@ -13,8 +16,6 @@ import { FC } from 'react';
 import { GetStaticProps } from 'next';
 import IntroductionCard from '../components/cards/IntroductionCard';
 import PostCard from '../components/cards/PostCard';
-import { indexQuery } from '../lib/sanityQueries';
-import { sanityClient } from '../lib/config';
 
 const cardImageHeight = POST_IMAGE_HEIGHT;
 
@@ -25,17 +26,17 @@ const cardProps = {
     elevation: 3,
 };
 
-type IndexProps = {
-    posts: IPost[];
-    categories: ICategory[];
-};
+type IndexProps = {} & HomePageStaticData;
 
-const Index: FC<IndexProps> = ({ posts, categories }) => {
+const Index: FC<IndexProps> = ({
+    blog: { posts, categories },
+    portfolio: { about },
+}) => {
     return (
         <Container sx={{ mt: 3, mb: 3 }}>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={4}>
-                    <AuthorCard {...cardProps} />
+                    <AuthorCard {...cardProps} portfolioContent={about} />
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <IntroductionCard {...cardProps} categories={categories} />
@@ -60,8 +61,9 @@ const Index: FC<IndexProps> = ({ posts, categories }) => {
 export default Index;
 
 export const getStaticProps: GetStaticProps = async () => {
-    const result = await sanityClient.fetch(indexQuery);
+    const data = await getHomePageStaticData();
+
     return {
-        props: { ...result },
+        props: { ...data },
     };
 };

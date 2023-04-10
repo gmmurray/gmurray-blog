@@ -1,7 +1,5 @@
 export const introStaticContent = {
     authorText: 'Greg Murray',
-    authorImage:
-        'https://res.cloudinary.com/dv5gqze9p/image/upload/v1680474854/portfolio%20website/about_qix3lf.jpg',
     webUrl: 'https://gregmurray.org',
     welcomeText: `
         Welcome to my blog! I'm Greg, a software engineer with a passion for learning and the human side

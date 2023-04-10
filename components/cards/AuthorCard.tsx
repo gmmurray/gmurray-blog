@@ -9,16 +9,20 @@ import {
 import { Box } from '@mui/system';
 import { CardComponentProps } from '../../lib/types';
 import { FC } from 'react';
+import { IAboutContent } from '../../types/portfolioContent';
 import Link from 'next/link';
 import { introStaticContent } from '../../lib/staticContent';
 
-type AuthorCardProps = {} & CardComponentProps;
+type AuthorCardProps = {
+    portfolioContent: IAboutContent;
+} & CardComponentProps;
 
 const AuthorCard: FC<AuthorCardProps> = ({
     cardHeight,
     contentHeight,
     actionsHeight,
     elevation,
+    portfolioContent,
 }) => (
     <Card
         elevation={elevation}
@@ -28,7 +32,7 @@ const AuthorCard: FC<AuthorCardProps> = ({
     >
         <CardMedia
             component="img"
-            src={introStaticContent.authorImage}
+            src={portfolioContent.imageUrl}
             alt={`${introStaticContent.authorText} image`}
             height={contentHeight}
             sx={{ minHeight: contentHeight }}
