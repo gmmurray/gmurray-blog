@@ -22,6 +22,7 @@ import { NextSeo } from 'next-seo';
 import PageNav from '../../components/shared/PageNav';
 import { baseWebsiteUrl } from '../../lib/staticContent';
 import { sanityClient } from '../../lib/config';
+import { urlForImage } from '../../lib/sanity';
 import { useGetCategoryPosts } from '../../lib/queryHooks';
 
 const pageSize = DEFAULT_POST_PAGE_SIZE;
@@ -77,6 +78,14 @@ const Category: FC<CategoryProps> = ({ category }) => {
                 description={category.description}
                 openGraph={{
                     url: `${baseWebsiteUrl}${getCategoryHref(category)}`,
+                    images: [
+                        {
+                            url: urlForImage(category.image).toString()!,
+                            width: 800,
+                            height: 600,
+                            alt: category.title,
+                        },
+                    ],
                 }}
             />
             <Head>

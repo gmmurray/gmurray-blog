@@ -25,6 +25,14 @@ function MyApp({ Component, pageProps }: AppProps) {
                 openGraph={{
                     type: 'website',
                     url: baseWebsiteUrl,
+                    images: [
+                        {
+                            url: `${baseWebsiteUrl}/favicon.ico`,
+                            width: 250,
+                            height: 250,
+                            alt: `Greg's Blog logo`,
+                        },
+                    ],
                 }}
             />
             <ThemeProvider theme={muiTheme}>

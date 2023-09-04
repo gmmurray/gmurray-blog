@@ -10,6 +10,7 @@ import PostPageCard from '../../components/cards/PostPageCard';
 import { baseWebsiteUrl } from '../../lib/staticContent';
 import { getPostHref } from '../../lib/routeHelpers';
 import { sanityClient } from '../../lib/config';
+import { urlForImage } from '../../lib/sanity';
 
 type PostProps = {
     post: IPost;
@@ -23,6 +24,14 @@ const Post: FC<PostProps> = ({ post }) => {
                 description={post.summary}
                 openGraph={{
                     url: `${baseWebsiteUrl}/${getPostHref(post)}`,
+                    images: [
+                        {
+                            url: urlForImage(post.mainImage).toString()!,
+                            width: 800,
+                            height: 600,
+                            alt: post.title,
+                        },
+                    ],
                 }}
             />
             <Container sx={{ mt: 1, mb: 3 }}>
