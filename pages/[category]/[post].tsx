@@ -3,11 +3,12 @@ import { FC, Fragment } from 'react';
 import { postQuery, postsQuery } from '../../lib/sanityQueries';
 
 import { GetStaticProps } from 'next';
-import Head from 'next/head';
 import { IPost } from '../../lib/sanityTypes';
+import { NextSeo } from 'next-seo';
 import PageNav from '../../components/shared/PageNav';
 import PostPageCard from '../../components/cards/PostPageCard';
-import { getPageTitle } from '../../lib/routeHelpers';
+import { baseWebsiteUrl } from '../../lib/staticContent';
+import { getPostHref } from '../../lib/routeHelpers';
 import { sanityClient } from '../../lib/config';
 
 type PostProps = {
@@ -17,9 +18,13 @@ type PostProps = {
 const Post: FC<PostProps> = ({ post }) => {
     return (
         <Fragment>
-            <Head>
-                <title>{getPageTitle(post.title)}</title>
-            </Head>
+            <NextSeo
+                title={post.title}
+                description={post.summary}
+                openGraph={{
+                    url: `${baseWebsiteUrl}/${getPostHref(post)}`,
+                }}
+            />
             <Container sx={{ mt: 1, mb: 3 }}>
                 <PageNav post={post} />
                 <Grid container spacing={2}>

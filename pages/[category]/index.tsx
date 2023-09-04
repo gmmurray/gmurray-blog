@@ -1,4 +1,3 @@
-import { Box, Button, Container, Grid } from '@mui/material';
 import {
     CATEGORY_CARD_HEIGHT,
     CATEGORY_CONTENT_HEIGHT,
@@ -9,16 +8,19 @@ import {
     POST_IMAGE_HEIGHT,
     POST_PIXEL_HEIGHT,
 } from '../../lib/constants';
+import { Container, Grid } from '@mui/material';
 import { FC, Fragment, useCallback, useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { categoriesQuery, categoryQuery } from '../../lib/sanityQueries';
+import { getCategoryHref, getPageTitle } from '../../lib/routeHelpers';
 
 import CategoryCard from '../../components/cards/CategoryCard';
 import CategoryPostCards from '../../components/cards/CategoryPostCards';
 import Head from 'next/head';
 import { ICategory } from '../../lib/sanityTypes';
+import { NextSeo } from 'next-seo';
 import PageNav from '../../components/shared/PageNav';
-import { getPageTitle } from '../../lib/routeHelpers';
+import { baseWebsiteUrl } from '../../lib/staticContent';
 import { sanityClient } from '../../lib/config';
 import { useGetCategoryPosts } from '../../lib/queryHooks';
 
@@ -70,6 +72,13 @@ const Category: FC<CategoryProps> = ({ category }) => {
 
     return (
         <Fragment>
+            <NextSeo
+                title={category.title}
+                description={category.description}
+                openGraph={{
+                    url: `${baseWebsiteUrl}${getCategoryHref(category)}`,
+                }}
+            />
             <Head>
                 <title>{getPageTitle(category.title)}</title>
             </Head>

@@ -13,3 +13,5 @@ export const postPageStaticContent = {
 };
 
 export const blogTitle = `Greg Murray's Blog`;
+
+export const baseWebsiteUrl = 'https://blog.gregmurray.org';
